@@ -1,0 +1,11 @@
+input {
+    display: block;
+}
+
+.valid:focus {
+    border-color: rgb(113, 185, 113);
+}
+
+.invalid:focus {
+    border-color: orangered;
+}
