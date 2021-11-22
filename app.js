@@ -6,6 +6,8 @@ const validate = {
     phone: /^((0\d{3})[ ]?(\d{3})[ ]?(\d{4}))|(\+?\d{10,13})$/,
 };
 
+const validFunction
+
 const formInputs = document.querySelectorAll("#signup input");
 
 for (input of formInputs) {
