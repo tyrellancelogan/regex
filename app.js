@@ -5,25 +5,3 @@ const validate = {
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_=]).{8,}$/,
     phone: /^((0\d{3})[ ]?(\d{3})[ ]?(\d{4}))|(\+?\d{10,13})$/,
 };
-
-const inputValidator = function (validate, input) {
-    // compare if input == regex
-    //      remove invalid class, add valid class
-    // else
-    //      remove valid class, add invalid class
-    if(validate.name )
-    
-};
-
-const passwordValidator = function (alpha, omega) {
-    // if alpha != omega
-    // alert omega
-};
-const form = document.querySelector("form");
-const formInputs = document.querySelectorAll("#signup input");
-
-for (input of formInputs) {
-    input.addEventListener("input", (e) => {
-        console.log(e);
-    });
-}
