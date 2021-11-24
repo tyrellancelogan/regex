@@ -4,12 +4,14 @@ const validate = {
     email: /^([a-zA-z][\w\.-]+)@([a-zA-z\d-]+)\.([a-z]{1,5})(?:\.([a-z]{1,5}))?$/,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*]).{8,}$/,
     confirm: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*]).{8,}$/,
-    phone: /^((0\d{3})[ ]?(\d{3})[ ]?(\d{4})){0,13}|(\+?\d{10,13})$/,
+    phone: /(^((0\d{3})[ ]?(\d{3})[ ]?(\d{4}))$)|(^(\+?\d{10,13})$)/,
 };
 
 // get form object and inputs objects
 const formObj = document.querySelector("#signup");
 const inputObj = document.querySelectorAll("#signup input");
+const passwordField = formObj.elements.password;
+const confirmField = formObj.elements.confirm;
 
 // test regex pattern with user input
 const inputValidate = (reg, input) => reg.test(input.value);
@@ -32,8 +34,19 @@ for (input of inputObj) {
                 evtTag.classList.add("invalid");
             }
         }
+
+        // validate if password value matches confirm password value
+        if (
+            confirmField.value != "" &&
+            inputValidate(validate[passwordField.name], passwordField) &&
+            passwordField.value !== confirmField.value
+        ) {
+            console.log("password no match");
+        } else if (confirmField.value != "") {
+            console.log("password match");
+        }
     });
 }
 
-const passwordField = formObj.elements.password;
 console.log(passwordField);
+console.log(confirmField);
