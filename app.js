@@ -5,6 +5,10 @@ const validate = {
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*]).{8,}$/,
     confirm: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*]).{8,}$/,
     phone: /(^((0\d{3})[ ]?(\d{3})[ ]?(\d{4}))$)|(^(\+?\d{10,13})$)/,
+    small: /[a-z]/,
+    caps: /[A-Z]/,
+    number: /\d/,
+    symbol: /[^a-zA-z0-9]/,
 };
 
 // get form object and inputs objects
@@ -35,6 +39,8 @@ for (input of inputObj) {
             }
         }
 
+        // check if password contains certain characters
+
         // validate if password value matches confirm password value
         if (
             confirmField.value != "" &&
@@ -48,5 +54,41 @@ for (input of inputObj) {
     });
 }
 
-console.log(passwordField);
-console.log(confirmField);
+passwordField.addEventListener("input", (evt) => {
+    let message;
+    let errorCount = [];
+    const evtTag = evt.target;
+    const tagVal = evtTag.value;
+    const { small, caps, symbol, number } = validate;
+    console.log(small, caps, symbol, number);
+    // console.log(tagVal);
+    if (
+        tagVal != "" &&
+        (!small.test(tagVal) || !caps.test(tagVal) || !symbol.test(tagVal) || !number.test(tagVal))
+    ) {
+        message = "must contain:";
+        if (!small.test(tagVal)) {
+            errorCount.push("small");
+        } else {
+            console.log("ss");
+        }
+        if (!caps.test(tagVal)) {
+            errorCount.push("caps");
+        } else {
+            console.log("ss");
+        }
+        if (!symbol.test(tagVal)) {
+            errorCount.push("symbol");
+        } else {
+            console.log("ss");
+        }
+        if (!number.test(tagVal)) {
+            errorCount.push("number");
+        } else {
+            console.log("ss");
+        }
+    }
+
+    console.log(errorCount);
+});
+//
